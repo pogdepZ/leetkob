@@ -78,9 +78,15 @@ export function publishRoutes(app: FastifyInstance, deps: PublishDeps): void {
 
       // 2. Whose lab. A lab outside the TA's classes looks exactly like a lab that does not exist.
       const lab = deps.store.lab(labId);
-      if (lab === undefined || !user.classIds.includes(lab.classId)) {
+      if (lab === undefined) {
+        throw new ProblemError(problem('lab-not-found', `No lab ${labId}.`, instance));
+      }
+      if (!user.classIds.includes(lab.classId)) {
+        // Deliberate contract break for PA#2: tells a TA that a lab exists in another class.
         throw new ProblemError(
-          problem('lab-not-found', `No lab ${labId} in your classes.`, instance),
+          problem('forbidden-role', `Lab ${labId} belongs to another class.`, instance, {
+            role: user.role,
+          }),
         );
       }
 
