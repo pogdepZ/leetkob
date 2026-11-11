@@ -138,6 +138,7 @@ export function publishRoutes(app: FastifyInstance, deps: PublishDeps): void {
           pass: items.filter((item) => item.verdict === 'pass').length,
           violation: items.filter((item) => item.verdict === 'violation').length,
           unsure: items.filter((item) => item.verdict === 'unsure').length,
+          reviewed: items.filter((item) => item.reviewState === 'confirmed').length,
         },
       };
       deps.store.savePublication(publication);

@@ -73,20 +73,28 @@ Headers: `Location: /labs/{labId}/publication`, `Content-Type: application/json`
   "publishedAt": "2026-11-09T14:02:11.000Z",
   "publishedBy": "ta_a",
   "note": "Marks for the Sorting lab. Appeals open for 7 days.",
-  "counts": { "submissions": 80, "verdicts": 240, "pass": 221, "violation": 15, "unsure": 4 }
+  "counts": {
+    "submissions": 80,
+    "verdicts": 240,
+    "pass": 221,
+    "violation": 15,
+    "unsure": 4,
+    "reviewed": 240
+  }
 }
 ```
 
-| Field                                              | Type                 | Rule                                                                                                                                                       |
-| -------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `publicationId`                                    | string (UUID)        | Stable for the lifetime of the publication.                                                                                                                |
-| `labId`                                            | string               | Echo of the path parameter.                                                                                                                                |
-| `publishedAt`                                      | string, ISO 8601 UTC | Set once, on the first successful call.                                                                                                                    |
-| `publishedBy`                                      | string               | User ID of the TA who published.                                                                                                                           |
-| `note`                                             | string or `null`     | The note from the first successful call, or `null`.                                                                                                        |
-| `counts.submissions`                               | integer ≥ 0          | Accepted submissions the lab had when it was published.                                                                                                    |
-| `counts.verdicts`                                  | integer ≥ 0          | Verdicts published; `= pass + violation + unsure`.                                                                                                         |
-| `counts.pass`, `counts.violation`, `counts.unsure` | integer ≥ 0          | Verdicts by outcome. An `unsure` verdict that the TA confirmed is still reported as `unsure`: the TA's decision lives on the submission's marks, not here. |
+| Field                                              | Type                 | Rule                                                                                                                                                                                                                                              |
+| -------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `publicationId`                                    | string (UUID)        | Stable for the lifetime of the publication.                                                                                                                                                                                                       |
+| `labId`                                            | string               | Echo of the path parameter.                                                                                                                                                                                                                       |
+| `publishedAt`                                      | string, ISO 8601 UTC | Set once, on the first successful call.                                                                                                                                                                                                           |
+| `publishedBy`                                      | string               | User ID of the TA who published.                                                                                                                                                                                                                  |
+| `note`                                             | string or `null`     | The note from the first successful call, or `null`.                                                                                                                                                                                               |
+| `counts.submissions`                               | integer ≥ 0          | Accepted submissions the lab had when it was published.                                                                                                                                                                                           |
+| `counts.verdicts`                                  | integer ≥ 0          | Verdicts published; `= pass + violation + unsure`.                                                                                                                                                                                                |
+| `counts.pass`, `counts.violation`, `counts.unsure` | integer ≥ 0          | Verdicts by outcome. An `unsure` verdict that the TA confirmed is still reported as `unsure`: the TA's decision lives on the submission's marks, not here.                                                                                        |
+| `counts.reviewed`                                  | integer ≥ 0          | Verdicts the TA confirmed in the review queue. Equal to `counts.verdicts` on a published lab, because `reviews-pending` refuses otherwise; kept as its own member so a client can show it without re-deriving the rule. Added in PA#2 (additive). |
 
 ### `200 OK` — the lab was already published
 
