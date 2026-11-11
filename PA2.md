@@ -1,6 +1,6 @@
 # PA#2 — LeeTKOB, harness and quality gate
 
-Team: 23120322 Lê Thanh Phong, `<StudentID2>` `<Name>`, `<StudentID3>` `<Name>`.
+Team: 23120279 `<Name>`, 23120321 `<Name>`, 23120322 Lê Thanh Phong.
 Submitted at tag `pa2`.
 
 | What                                     | Link                                                                                                                                                        |

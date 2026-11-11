@@ -25,7 +25,7 @@ tags `pa2` on `main` and pushes the tag.
 
 ## Before zipping
 
-1. Fill the team rows (`<StudentID2>`, `<StudentID3>`, names) in `README.md`, `PA2.md`,
+1. Fill the two missing names (`<Name>`) in `README.md`, `PA2.md`,
    `SELF_ASSESSMENT_REPORT.md` — through a PR, since `main` is protected. Then move the tag:
    `git tag -f pa2 && git push -f origin pa2`.
 2. Optional: screenshot `https://github.com/<owner>/leetkob/settings/branches` to
@@ -34,7 +34,7 @@ tags `pa2` on `main` and pushes the tag.
    goes in the file name.
 
 ```sh
-scripts/pa2-zip.sh <id1>-<id2>-<id3> <total>
+scripts/pa2-zip.sh 23120279-23120321-23120322 <total>
 ```
 
 Submit the zip from a `<StudentID>@student.hcmus.edu.vn` account.
