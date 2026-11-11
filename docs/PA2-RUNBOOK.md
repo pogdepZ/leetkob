@@ -25,7 +25,7 @@ tags `pa2` on `main` and pushes the tag.
 
 ## Before zipping
 
-1. Fill the two missing names (`<Name>`) in `README.md`, `PA2.md`,
+1. Check the team rows in `README.md`, `PA2.md`,
    `SELF_ASSESSMENT_REPORT.md` — through a PR, since `main` is protected. Then move the tag:
    `git tag -f pa2 && git push -f origin pa2`.
 2. Optional: screenshot `https://github.com/<owner>/leetkob/settings/branches` to
