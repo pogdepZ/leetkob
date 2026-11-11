@@ -3,14 +3,14 @@
 Team: 23120279 `<Name>`, 23120321 `<Name>`, 23120322 Lê Thanh Phong.
 Submitted at tag `pa2`.
 
-| What                                     | Link                                                                                                                                                        |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Repository (public)                      | <REPO_URL>                                                                                                                                                  |
-| Protected-branch settings                | <REPO_URL>/settings/branches — API dump committed at `docs/evidence/branch-protection.json` (screenshot, if present: `docs/evidence/branch-protection.png`) |
-| Pull request a red check stopped         | <PR_RED_URL> — red run: <RED_RUN_URL>, red commit: <RED_COMMIT_URL>                                                                                         |
-| The commit that turned it green          | <GREEN_COMMIT_URL> — green run: <GREEN_RUN_URL>                                                                                                             |
-| CI run for the tag                       | <REPO_URL>/actions?query=branch%3Apa2                                                                                                                       |
-| Deliberate contract break that CI caught | <PR_BREAK_URL> (left open, unmerged) — red run: <BREAK_RUN_URL>, commit: <BREAK_COMMIT_URL>                                                                 |
+| What                                     | Link                                                                                                                                                                                                                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Repository (public)                      | https://github.com/pogdepZ/leetkob                                                                                                                                                                                                                             |
+| Protected-branch settings                | https://github.com/pogdepZ/leetkob/settings/branches — screenshot committed at `docs/evidence/branch-protection.jpg`; the blocked merge box at `docs/evidence/pr1-blocked-red-checks.jpg`, the contract-break PR at `docs/evidence/pr2-contract-break-red.jpg` |
+| Pull request a red check stopped         | https://github.com/pogdepZ/leetkob/pull/1 — red run: https://github.com/pogdepZ/leetkob/actions/runs/42978807292, red commit: https://github.com/pogdepZ/leetkob/commit/81f9ae7                                                                                |
+| The commit that turned it green          | https://github.com/pogdepZ/leetkob/commit/3a6f6d2 — green run: https://github.com/pogdepZ/leetkob/actions/runs/42978948452                                                                                                                                     |
+| CI run for the tag                       | https://github.com/pogdepZ/leetkob/actions?query=branch%3Apa2                                                                                                                                                                                                  |
+| Deliberate contract break that CI caught | https://github.com/pogdepZ/leetkob/pull/2 (left open, unmerged) — red run: https://github.com/pogdepZ/leetkob/actions/runs/42980922214, commit: https://github.com/pogdepZ/leetkob/commit/0fde427                                                              |
 
 ## Where things are
 
