@@ -6,7 +6,9 @@ import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import { PROBLEM_BASE, type ProblemSlug } from '../../src/problem.js';
-import { makeApp, NOW, TOKENS } from '../fixtures.js';
+import { buildApp } from '../../src/app.js';
+import { MemoryStore } from '../../src/store.js';
+import { makeApp, NOW, seed, TOKENS } from '../fixtures.js';
 
 let app: FastifyInstance;
 
@@ -249,6 +251,29 @@ describe('Response and idempotency', () => {
       expect(res.json()).toMatchObject({ note: null });
     } finally {
       await app2.close();
+    }
+  });
+});
+
+describe('Failures', () => {
+  it('500 internal-error: an unexpected failure is still a problem document', async () => {
+    class BrokenStore extends MemoryStore {
+      override lab(): never {
+        throw new Error('db down');
+      }
+    }
+    const broken = buildApp({ store: new BrokenStore(seed()) });
+    await broken.ready();
+    try {
+      const res = await broken.inject({
+        method: 'POST',
+        url: '/labs/lab_ready/publish',
+        headers: { authorization: `Bearer ${TOKENS.taA}` },
+      });
+      expectProblem(res, 'internal-error', 500, 'lab_ready');
+      expect(res.body).not.toContain('db down');
+    } finally {
+      await broken.close();
     }
   });
 });
