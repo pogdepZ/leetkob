@@ -12,11 +12,11 @@ for one endpoint, `POST /labs/{labId}/publish`. The LLM feature arrives in PA#3.
 
 ## Team
 
-| Student ID | Name           |
-| ---------- | -------------- |
-| 23120322   | Lê Thanh Phong |
-| 23120279   | `<Name>`       |
-| 23120321   | `<Name>`       |
+| Student ID | Name                |
+| ---------- | ------------------- |
+| 23120322   | Lê Thanh Phong      |
+| 23120279   | Nguyễn Lê Quang Kan |
+| 23120321   | Lâm Nhật Phong      |
 
 ## Stack
 

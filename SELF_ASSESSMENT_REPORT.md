@@ -1,6 +1,6 @@
 # SELF_ASSESSMENT_REPORT.md — PA#2 Harness and quality gate
 
-Team: **23120279** `<Name>` · **23120321** `<Name>` · **23120322** Lê Thanh Phong · Zip: `23120279-23120321-23120322_91.zip`
+Team: **23120279** Nguyễn Lê Quang Kan · **23120321** Lâm Nhật Phong · **23120322** Lê Thanh Phong · Zip: `23120279-23120321-23120322_91.zip`
 
 Commits and PRs are in the repository at https://github.com/pogdepZ/leetkob, tag `pa2`.
 
