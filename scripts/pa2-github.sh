@@ -21,9 +21,14 @@ run_url_for() { # branch -> URL of the latest workflow run on it (waits until on
   done
   echo "no run found for $branch" >&2; exit 1
 }
-wait_checks() { # pr-number -> prints conclusion; does not fail the script on red
-  gh pr checks "$1" --repo "$REPO" --watch --fail-level none >/dev/null 2>&1 || true
-  gh pr checks "$1" --repo "$REPO" --json name,state --jq '.[] | "\(.name): \(.state)"'
+wait_checks() { # pr-number -> waits until no check is pending, prints each state; never fails on red
+  local pr=$1 pending
+  for _ in $(seq 1 240); do # up to 20 minutes
+    pending=$(gh pr checks "$pr" --repo "$REPO" --json state --jq '[.[] | select(.state=="PENDING" or .state=="IN_PROGRESS" or .state=="QUEUED")] | length' 2>/dev/null || echo 1)
+    [[ "$pending" == "0" ]] && break
+    sleep 5
+  done
+  gh pr checks "$pr" --repo "$REPO" --json name,state --jq '.[] | "\(.name): \(.state)"'
 }
 
 gh auth status >/dev/null
@@ -86,8 +91,9 @@ echo "break run: $BREAK_RUN"
 
 say "6/7 PR 3: fill the links into PA2.md and SELF_ASSESSMENT_REPORT.md, commit the protection evidence"
 git switch -q -c "$DOCS" main 2>/dev/null || git switch -q "$DOCS"
-fill() { sed -i "s|$1|$2|g" PA2.md SELF_ASSESSMENT_REPORT.md AI-LOG.md; }
+fill() { sed -i "s|$1|$2|g" PA2.md SELF_ASSESSMENT_REPORT.md AI-LOG.md README.md; }
 fill '<REPO_URL>' "$REPO_URL"
+fill 'https://github.com/<org>/leetkob' "$REPO_URL"
 fill '<PR_RED_URL>' "$REPO_URL/pull/$PR1"
 fill '<RED_RUN_URL>' "$RED_RUN"
 fill '<RED_COMMIT_URL>' "$REPO_URL/commit/$RED_SHA"
@@ -96,7 +102,7 @@ fill '<GREEN_RUN_URL>' "$GREEN_RUN"
 fill '<PR_BREAK_URL>' "$REPO_URL/pull/$PR2"
 fill '<BREAK_RUN_URL>' "$BREAK_RUN"
 fill '<BREAK_COMMIT_URL>' "$REPO_URL/commit/$BREAK_SHA"
-git add PA2.md SELF_ASSESSMENT_REPORT.md AI-LOG.md docs/evidence/
+git add PA2.md SELF_ASSESSMENT_REPORT.md AI-LOG.md README.md docs/evidence/
 git commit -qm "docs(pa2): links to the blocked PR, the green commit, the contract break and the protection evidence"
 git push -u origin "$DOCS"
 PR3=$(gh pr create --repo "$REPO" --base main --head "$DOCS" \

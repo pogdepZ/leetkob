@@ -43,9 +43,9 @@ A student sending garbage gets `403`, not `422`.
 
 The body is optional. When present it is a JSON object:
 
-| Field  | Type   | Required | Rule                                                                                                                                                     |
-| ------ | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `note` | string | no       | 1–500 characters after trimming is not applied: the raw length counts; a blank string (only whitespace) is rejected. Shown to students with their marks. |
+| Field  | Type   | Required | Rule                                                                                                                          |
+| ------ | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `note` | string | no       | 1–500 characters, raw length (no trimming). A string that is only whitespace is rejected. Shown to students with their marks. |
 
 Any field other than `note` → `422 validation-failed` (`"unknown field"`). A body that is not a JSON
 object (an array, a number, a string) → `422 validation-failed` with pointer `""`. A body that is

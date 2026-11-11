@@ -26,7 +26,8 @@ the assistant wrote. A push goes to a branch, never to `main` (`main` is protect
 
 ## Never
 
-- Read or edit `.env` or any `.env.*` except `.env.example`, or anything under `~/.ssh`,
+- Read or edit `.env`, `.env.local`, `.env.development`, `.env.production` (`.env.example` is
+  allowed: it holds names, not values), or anything under `~/.ssh`,
   `~/.aws`, `~/.config/gh`.
 - Edit the eval data or its labels (`eval/`, `data/eval/`). From PA#4 the eval gates CI; a
   label changed to make it pass is a wrongful deduction hidden, not fixed.
