@@ -212,7 +212,7 @@ describe('Response and idempotency', () => {
       publishedAt: NOW.toISOString(),
       publishedBy: 'ta_a',
       note: 'Marks are out.',
-      counts: { submissions: 3, verdicts: 4, pass: 2, violation: 1, unsure: 1 },
+      counts: { submissions: 3, verdicts: 4, pass: 2, violation: 1, unsure: 1, reviewed: 4 },
     });
   });
 

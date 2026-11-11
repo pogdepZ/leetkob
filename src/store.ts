@@ -44,6 +44,8 @@ export interface Publication {
     pass: number;
     violation: number;
     unsure: number;
+    /** Verdicts the TA confirmed. Equals `verdicts` on a published lab. */
+    reviewed: number;
   };
 }
 
