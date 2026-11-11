@@ -26,7 +26,7 @@ One process, in-memory storage for PA#2. Fewer moving parts on purpose; see `doc
 ## Fresh clone to green
 
 ```sh
-git clone https://github.com/<org>/leetkob.git
+git clone https://github.com/pogdepZ/leetkob.git
 cd leetkob
 nvm use            # Node 22, from .nvmrc
 npm ci

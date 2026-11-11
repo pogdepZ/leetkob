@@ -38,7 +38,7 @@ Numbered so `CLAUDE.md` can point at them.
 
 8. **Changed — `npm audit` after install: one critical (tinypool, under vitest 3).** Vitest was moved to 5.1.0, which clears it. Seven moderate advisories remain, all `minimatch` under typescript-eslint, dev-only; left as they are and noted here rather than forced with `--force`. Commit "chore: vitest 5".
 
-9. **Kept, and why — `404` instead of `403` for another TA's lab.** The assistant proposed it; the human kept it after reading D3. The deliberate contract break in `<PR_BREAK_URL>` is exactly this rule reversed, so that the tests that defend it are the ones shown going red.
+9. **Kept, and why — `404` instead of `403` for another TA's lab.** The assistant proposed it; the human kept it after reading D3. The deliberate contract break in `https://github.com/pogdepZ/leetkob/pull/2` is exactly this rule reversed, so that the tests that defend it are the ones shown going red.
 
 ## What I would not have caught alone
 
