@@ -1,0 +1,34 @@
+# The quality gate. Four jobs, one per check, each running exactly the npm script the README
+# documents. main is protected and requires all four; a red job blocks the merge.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['pa*']
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ${{ matrix.check }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        check: [lint, format:check, typecheck, test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run ${{ matrix.check }}
